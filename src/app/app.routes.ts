@@ -22,4 +22,8 @@ export const routes: Routes = [
     path: 'theme',
     loadComponent: () => import('./pages/theme/theme.page').then( m => m.ThemePage)
   },
+  {
+    path: 'misdatos',
+    loadComponent: () => import('./pages/misdatos/misdatos.page').then( m => m.MisdatosPage)
+  },
 ];

@@ -8,6 +8,7 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import * as L from 'leaflet'; // Importamos Leaflet
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,8 +29,9 @@ export class HomePage implements OnInit {
   map: L.Map | null = null;
   addressName: string = '';
   distance: string = '';
+  usuario: any;
 
-  constructor(private geo: GeolocationService, private http: HttpClient) { 
+  constructor(private geo: GeolocationService, private http: HttpClient, private router: Router) { 
 
   }
 
@@ -143,6 +145,10 @@ export class HomePage implements OnInit {
     });
     
     L.Marker.prototype.options.icon = iconDefault;
+  }
+
+  navegar(pagina: string) {
+    this.usuario.navegarEnviandoUsuario(this.router, pagina);
   }
 
 }

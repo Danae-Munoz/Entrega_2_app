@@ -9,6 +9,12 @@ import { NivelEducacional } from '../model/nivel-educacional';
   providedIn: 'root'
 })
 export class DataBaseService {
+  login(event: any) {
+    throw new Error('Method not implemented.');
+  }
+  readUsuarioById(loginIdUsuario: any): Usuario | undefined {
+    throw new Error('Method not implemented.');
+  }
 
   userUpgrades = [
     {
