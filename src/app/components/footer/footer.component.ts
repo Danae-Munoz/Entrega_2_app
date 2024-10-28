@@ -1,8 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { IonicModule } from '@ionic/angular';
+import { TranslateModule } from '@ngx-translate/core';
+import { IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon } from '@ionic/angular/standalone';
+import { AuthService } from 'src/app/services/auth.service';
+import { addIcons } from 'ionicons';
+import { homeOutline, pawOutline, pencilOutline, qrCodeOutline } from 'ionicons/icons';
+import { Router } from '@angular/router';  // Importa Router
 
 @Component({
   selector: 'app-footer',
@@ -12,12 +16,25 @@ import { IonicModule } from '@ionic/angular';
   imports: [
       CommonModule    // CGV-Permite usar directivas comunes de Angular
     , FormsModule     // CGV-Permite usar formularios
-    , IonicModule     // CGV-Permite usar componentes de Ionic como IonContent, IonItem, etc.
     , TranslateModule // CGV-Permite usar pipe 'translate'
+    , IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon
   ]
 })
 export class FooterComponent {
 
-  constructor() { }
+  selectedComponent = 'welcome';
+  navCtrl: any;
+
+  constructor(private auth: AuthService, private router: Router) { 
+    addIcons({ homeOutline, qrCodeOutline, pawOutline, pencilOutline });
+  }
+
+  segmentChanged(selectedComponent: string) {
+    this.selectedComponent = selectedComponent;
+    this.auth.selectedComponent.next(this.selectedComponent);
+  }
+  navigateToMiruta() {
+    this.router.navigate(['/miruta']); // Método para navegar a "miruta"
+  }
 
 }

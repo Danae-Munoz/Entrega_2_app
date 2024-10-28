@@ -1,85 +1,153 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { showToast } from 'src/app/tools/message-routines';
-import { Usuario } from '../model/usuario';
+import { showAlertError, showToast } from 'src/app/tools/message-functions';
+import { User } from '../model/user';
 import { Storage } from '@ionic/storage-angular';
-import { DataBaseService } from './data-base.service';
+import { DatabaseService } from './database.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  keyUsuario = 'USUARIO_AUTENTICADO';
-  usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
+  storageAuthUserKey = 'AUTHENTICATED_USER';
+  authUser = new BehaviorSubject<User | null>(null);
+  isFirstLogin = new BehaviorSubject<boolean>(false);
+  storageQrCodeKey = 'QR_CODE';
+  qrCodeData = new BehaviorSubject<string | null>(null);
+  selectedComponent = new BehaviorSubject<string>('welcome');
 
-  // La variable primerInicioSesion vale true cuando el usuario digita correctamente sus
-  // credenciales y logra entrar al sistema por primera vez. Pero vale falso, si el 
-  // usuario ya ha iniciado sesión, luego cierra la aplicación sin cerrar la sesión
-  // y vuelve a entrar nuevamente. Si el usuario ingresa por primera vez, se limpian todas
-  // las componentes, pero se dejan tal como están y no se limpian, si el suario
-  // cierra al aplicación y la vuelve a abrir sin haber previamente cerrado la sesión.
-  primerInicioSesion =  new BehaviorSubject<boolean>(false);
+  constructor(private router: Router, private db: DatabaseService, private storage: Storage) { }
 
-  constructor(private router: Router, private bd: DataBaseService, private storage: Storage) { }
-
-  async inicializarAutenticacion() {
-    await this.storage.create();
+  async initializeAuthService() {
+    try {
+      await this.storage.create();
+    } catch (error) {
+      showAlertError('AuthService.initializeAuthService', error);
+    }
   }
 
   async isAuthenticated(): Promise<boolean> {
-    return await this.leerUsuarioAutenticado().then(usuario => {
-      return usuario !== null;
-    });
+    try {
+      return Boolean(await this.readAuthUser());
+    } catch (error) {
+      showAlertError('AuthService.isAuthenticated', error);
+      return false;
+    }
   }
 
-  async leerUsuarioAutenticado(): Promise<Usuario | null> {
-    const usuario = await this.storage.get(this.keyUsuario) as Usuario;
-    this.usuarioAutenticado.next(usuario);
-    return usuario;
+  async readAuthUser(): Promise<User | null> {
+    try {
+      const user = (await this.storage.get(this.storageAuthUserKey)) as User | null;
+      this.authUser.next(user ?? null);
+      return user;
+    } catch (error) {
+      showAlertError('AuthService.readAuthUser', error);
+      return null;
+    }
   }
 
-  guardarUsuarioAutenticado(usuario: Usuario) {
-    this.storage.set(this.keyUsuario, usuario);
-    this.usuarioAutenticado.next(usuario);
+  async saveAuthUser(user: User): Promise<User | null> {
+    try {
+      await this.storage.set(this.storageAuthUserKey, user);
+      this.authUser.next(user);
+      return user;
+    } catch (error) {
+      showAlertError('AuthService.saveAuthUser', error);
+      return null;
+    }
   }
 
-  eliminarUsuarioAutenticado(usuario: Usuario) {
-    this.storage.remove(this.keyUsuario);
-    this.usuarioAutenticado.next(null);
+  async deleteAuthUser(): Promise<boolean> {
+    try {
+      await this.storage.remove(this.storageAuthUserKey);
+      this.authUser.next(null);
+      return true;
+    } catch (error) {
+      showAlertError('AuthService.deleteAuthUser', error);
+      return false;
+    }
   }
 
-  async login(cuenta: string, password: string) {
-    await this.storage.get(this.keyUsuario).then(async (usuarioAutenticado) => {
-      if (usuarioAutenticado) {
-        this.usuarioAutenticado.next(usuarioAutenticado);
-        this.primerInicioSesion.next(false); // Avisar que no es el primer inicio de sesión
-        this.router.navigate(['/home']);
+  async login(userName: string, password: string): Promise<boolean> {
+    try {
+      const authUser = await this.storage.get(this.storageAuthUserKey);
+
+      if (authUser) {
+        this.authUser.next(authUser);
+        this.isFirstLogin.next(false);
+        await this.router.navigate(['/home']);
+        return true;
       } else {
-        await this.bd.buscarUsuarioValido(cuenta, password).then(async (usuario: Usuario | undefined) => {
-          if (usuario) {
-            showToast(`¡Bienvenido(a) ${usuario.nombre} ${usuario.apellido}!`);
-            this.guardarUsuarioAutenticado(usuario);
-            this.primerInicioSesion.next(true); // Avisar que es el primer inicio de sesión
-            this.router.navigate(['/home']);
-          } else {
-            showToast(`El correo o la password son incorrectos`);
-            this.router.navigate(['/login']);
-          }
-        });
+        const user = await this.db.findUser(userName, password);
+
+        if (user) {
+          showToast(`¡Bienvenid@ ${user.firstName} ${user.lastName}!`);
+          await this.saveAuthUser(user);
+          this.isFirstLogin.next(true);
+          this.selectedComponent.next('welcome');
+          await this.router.navigate(['/home']);
+          return true;
+        } else {
+          showToast('El correo o la password son incorrectos');
+          await this.router.navigate(['/login']);
+          return false;
+        }
       }
-    });
+    } catch (error) {
+      showAlertError('AuthService.login', error);
+      return false;
+    }
   }
 
-  async logout() {
-    this.leerUsuarioAutenticado().then((usuario) => {
-      if (usuario) {
-        showToast(`¡Hasta pronto ${usuario.nombre} ${usuario.apellido}!`);
-        this.eliminarUsuarioAutenticado(usuario);
+  async logout(): Promise<boolean> {
+    try {
+      const user = await this.readAuthUser();
+
+      if (user) {
+        showToast(`¡Hasta pronto ${user.firstName} ${user.lastName}!`);
+        await this.deleteAuthUser();
       }
-      this.router.navigate(['/login']);
-    })
+
+      await this.router.navigate(['/login']);
+      return true;
+    } catch (error) {
+      showAlertError('AuthService.logout', error);
+      return false;
+    }
   }
 
+  // async readQrFromStorage(): Promise<string | null> {
+  //   try {
+  //     const qrData = await this.storage.get(this.storageQrCodeKey) as string | null;
+  //     this.qrCodeData.next(qrData);
+  //     return qrData;
+  //   } catch (error) {
+  //     showAlertError('AuthService.readQrFromStorage', error);
+  //     return null;
+  //   }
+  // }
+
+  // async saveQrToStorage(qrData: string): Promise<string | null> {
+  //   try {
+  //     await this.storage.set(this.storageQrCodeKey, qrData);
+  //     this.qrCodeData.next(qrData);
+  //     return qrData;
+  //   } catch (error) {
+  //     showAlertError('AuthService.saveQrToStorage', error);
+  //     return null;
+  //   }
+  // }
+
+  // async deleteQrFromStorage(): Promise<boolean> {
+  //   try {
+  //     await this.storage.remove(this.storageQrCodeKey);
+  //     this.qrCodeData.next(null);
+  //     return true;
+  //   } catch (error) {
+  //     showAlertError('AuthService.deleteQrFromStorage', error);
+  //     return false;
+  //   }
+  // }
 }

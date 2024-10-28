@@ -5,11 +5,11 @@ import { IonicModule } from '@ionic/angular';
 import { ViewWillEnter } from '@ionic/angular';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { LanguageComponent } from 'src/app/components/language/language.component';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { colorWandOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { AuthService } from 'src/app/services/auth.service';
-import { Usuario } from 'src/app/model/usuario';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -41,16 +41,12 @@ export class LoginPage implements ViewWillEnter {
 
   correo: string;
   password: string;
-  usuario: Usuario;
 
   constructor(
       private router: Router
     , private translate: TranslateService
-    , private authService: AuthService
-    , private activatedRoute: ActivatedRoute
-    ) 
+    , private authService: AuthService) 
   { 
-    this.usuario = new Usuario();
     this.correo = 'atorres';
     this.password = '1234';
     // Los iconos deben ser agregados a uno (ver en https://ionic.io/ionicons)
@@ -67,9 +63,6 @@ export class LoginPage implements ViewWillEnter {
 
   login() {
     this.authService.login(this.correo, this.password);
-  }
-  navegar(pagina: string) {
-    this.usuario.navegarEnviandoUsuario(this.router, pagina);
   }
 
   registerNewUser() {

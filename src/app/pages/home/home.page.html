@@ -1,39 +1,32 @@
-<app-header></app-header>
+<app-header 
+  (clickQrTestButton)="startQrTest()"
+  (clickQrScanButton)="startQrScan()">
+</app-header>
 
 <ion-content [fullscreen]="true">
 
-  <!-- El div con id "mapId" será donde se mostrará el mapa -->
-  <div id="mapId" style="height: 100%;"></div>
+  <app-qrwebscanner 
+    *ngIf="selectedComponent === 'qrwebscanner'" 
+    (scanned)="webQrScanned($event)"
+    (stopped)="webQrStopped()">
+  </app-qrwebscanner >
+  
+  <app-welcome 
+    *ngIf="selectedComponent === 'welcome'">
+  </app-welcome>
+
+  <app-dinosaur 
+    *ngIf="selectedComponent === 'dinosaur'">
+  </app-dinosaur>
+
+  <app-forum 
+    *ngIf="selectedComponent === 'forum'">
+  </app-forum>
+
+  <app-forum 
+    *ngIf="selectedComponent === 'forum'">
+  </app-forum>
 
 </ion-content>
 
 <app-footer></app-footer>
-
-<ion-footer>
-  <ion-toolbar class="ion-text-center" color="primary">
-    <ion-button shape="round" color="secondary" size="small"
-        (click)="goToDUOC()" >
-      DUOC
-    </ion-button>
-
-    <ion-button shape="round" color="secondary" size="small"
-        (click)="goToMyPosition()">
-      Aquí
-    </ion-button>
-
-    <ion-button shape="round" color="secondary" size="small"
-        (click)="showRouteToDuoc()">
-      Ruta
-    </ion-button>
-
-    <ion-button shape="round" color="secondary" size="small"
-      (click)="navegar('/miclase')">
-      Miclase
-    </ion-button>
-
-    <div *ngIf="distance">
-      <br>
-      {{ distance }}
-    </div>
-  </ion-toolbar>
-</ion-footer>
