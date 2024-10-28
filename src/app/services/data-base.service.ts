@@ -63,38 +63,44 @@ export class DataBaseService {
     await this.leerUsuarios();
   }
 
-  async crearUsuariosDePrueba() {
-    await this.guardarUsuario(Usuario.getNewUsuario(
-      'atorres', 
-      'atorres@duocuc.cl', 
-      '1234', 
-      '¿Cuál es tu animal favorito?', 
-      'gato',
-      'Ana', 
-      'Torres', 
-      NivelEducacional.buscarNivelEducacional(6)!,
-      new Date(2000, 0, 5)));
-    await this.guardarUsuario(Usuario.getNewUsuario(
-      'jperez', 
-      'jperez@duocuc.cl', 
-      '5678', 
-      '¿Cuál es tu postre favorito?',
-      'panqueques',
-      'Juan', 
-      'Pérez',
-      NivelEducacional.buscarNivelEducacional(5)!,
-      new Date(2000, 1, 10)));
-    await this.guardarUsuario(Usuario.getNewUsuario(
-      'cmujica', 
-      'cmujica@duocuc.cl', 
-      '0987', 
-      '¿Cuál es tu vehículo favorito?',
-      'moto',
-      'Carla', 
-      'Mujica', 
-      NivelEducacional.buscarNivelEducacional(6)!,
-      new Date(2000, 2, 20)));
-  }
+  async crearUsuariosDePrueba() {  
+    await this.guardarUsuario(Usuario.getNewUsuario(  
+      'atorres',   
+      'atorres@duocuc.cl',   
+      '1234',   
+      '¿Cuál es tu animal favorito?',   
+      'gato',  
+      'Ana',   
+      'Torres',   
+      NivelEducacional.buscarNivelEducacional(6)!,  
+      new Date(2000, 0, 5),  
+      '1234' // Asegúrate de pasar el confirmPassword  
+    ));  
+    await this.guardarUsuario(Usuario.getNewUsuario(  
+      'jperez',   
+      'jperez@duocuc.cl',   
+      '5678',   
+      '¿Cuál es tu postre favorito?',  
+      'panqueques',  
+      'Juan',   
+      'Pérez',  
+      NivelEducacional.buscarNivelEducacional(5)!,  
+      new Date(2000, 1, 10),  
+      '5678' // Asegúrate de pasar el confirmPassword  
+    ));  
+    await this.guardarUsuario(Usuario.getNewUsuario(  
+      'cmujica',   
+      'cmujica@duocuc.cl',   
+      '0987',   
+      '¿Cuál es tu vehículo favorito?',  
+      'moto',  
+      'Carla',   
+      'Mujica',   
+      NivelEducacional.buscarNivelEducacional(6)!,  
+      new Date(2000, 2, 20),  
+      '0987' // Asegúrate de pasar el confirmPassword  
+    ));  
+}
 
   // Create y Update del CRUD. La creación y actualización de un usuario
   // se realizarán con el mismo método, ya que la instrucción "INSERT OR REPLACE"
