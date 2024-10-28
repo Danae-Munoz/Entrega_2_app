@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
@@ -9,6 +9,8 @@ import { GeolocationService } from 'src/app/services/geolocation.service';
 import * as L from 'leaflet'; // Importamos Leaflet
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Capacitor } from '@capacitor/core';
+import { Dinosaur } from 'src/app/model/dinosaur';
 
 @Component({
   selector: 'app-miruta',
@@ -25,16 +27,19 @@ import { ActivatedRoute, Router } from '@angular/router';
   ]
 })
 export class MirutaPage implements OnInit {
-
+  @ViewChild(FooterComponent) footer!: FooterComponent;
+  selectedComponent = 'welcome'; 
   map: L.Map | null = null;
   addressName: string = '';
   distance: string = '';
   usuario: any;
+  scanner: any;
+  auth: any;
 
   constructor(private geo: GeolocationService, private http: HttpClient, private router: Router) { 
 
   }
-
+  
   ngOnInit() {
     this.loadMap();
     this.fixLeafletIconPath();
@@ -149,6 +154,28 @@ export class MirutaPage implements OnInit {
 
   navegar(pagina: string) {
     this.usuario.navegarEnviandoUsuario(this.router, pagina);
+  }
+  async startQrScan() {
+    if (Capacitor.getPlatform() === 'web') {
+      this.selectedComponent = 'qrwebscanner';
+    } else {
+      this.showDinoComponent(await this.scanner.scan());
+    }
+  }
+  showDinoComponent(qr: string) {
+    if (qr === '') {
+      this.footer.segmentChanged('welcome');
+      return;
+    }
+    if (Dinosaur.isValidDinosaurQrCode(qr, true)) {
+      this.auth.qrCodeData.next(qr);
+      this.footer.segmentChanged('dinosaur');
+    } else {
+      this.footer.segmentChanged('welcome');
+    }
+  }
+  startQrTest() {
+    this.showDinoComponent(Dinosaur.jsonDinoExample);
   }
 
 }

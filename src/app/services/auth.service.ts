@@ -17,6 +17,7 @@ export class AuthService {
   storageQrCodeKey = 'QR_CODE';
   qrCodeData = new BehaviorSubject<string | null>(null);
   selectedComponent = new BehaviorSubject<string>('welcome');
+  selectedPage: any;
 
   constructor(private router: Router, private db: DatabaseService, private storage: Storage) { }
 

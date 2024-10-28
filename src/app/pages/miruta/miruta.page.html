@@ -1,5 +1,3 @@
-<app-header></app-header>
-
 <ion-content [fullscreen]="true">
 
   <!-- El div con id "mapId" será donde se mostrará el mapa -->
@@ -26,17 +24,11 @@
       Ruta
     </ion-button>
 
-    <ion-button shape="round" color="secondary" size="small"
-      (click)="navegar('/miclase')">
-      Miclase
-    </ion-button>
-
     <div *ngIf="distance">
       <br>
       {{ distance }}
     </div>
   </ion-toolbar>
-  <app-footer></app-footer>
 </ion-footer>
 
 

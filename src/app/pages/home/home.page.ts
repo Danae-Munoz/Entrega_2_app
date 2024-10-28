@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { DinosaurComponent } from 'src/app/components/dinosaur/dinosaur.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { IonContent } from '@ionic/angular/standalone'
+import { IonContent, IonIcon, IonSegmentButton } from '@ionic/angular/standalone'
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -13,23 +13,26 @@ import { Capacitor } from '@capacitor/core';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 import { ForumComponent } from 'src/app/components/forum/forum.component';
+import { MirutaPage } from "../miruta/miruta.page";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-  standalone: true,
-  imports: [
-      CommonModule, FormsModule, TranslateModule, IonContent
-    , HeaderComponent, FooterComponent
-    , WelcomeComponent, QrWebScannerComponent, DinosaurComponent
-    , ForumComponent
-  ]
+    selector: 'app-home',
+    templateUrl: 'home.page.html',
+    styleUrls: ['home.page.scss'],
+    standalone: true,
+    imports: [IonSegmentButton, IonIcon, 
+        CommonModule, FormsModule, TranslateModule, IonContent,
+        HeaderComponent, FooterComponent,
+        WelcomeComponent, QrWebScannerComponent, DinosaurComponent,
+        ForumComponent,
+        MirutaPage
+    ]
 })
 export class HomePage {
   
   @ViewChild(FooterComponent) footer!: FooterComponent;
-  selectedComponent = 'welcome';
+  selectedComponent = 'welcome'; 
+selectedPage: any;
 
   constructor(private auth: AuthService, private scanner: ScannerService) { 
     this.auth.selectedComponent.subscribe((selectedComponent) => {
@@ -39,6 +42,9 @@ export class HomePage {
 
   startQrTest() {
     this.showDinoComponent(Dinosaur.jsonDinoExample);
+  }
+  navigateTo(component: string) {
+    this.selectedComponent = component;
   }
 
   async startQrScan() {
