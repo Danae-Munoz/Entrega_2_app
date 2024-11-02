@@ -78,7 +78,7 @@ export class AuthService {
       if (authUser) {
         this.authUser.next(authUser);
         this.isFirstLogin.next(false);
-        await this.router.navigate(['/home']);
+        await this.router.navigate(['/inicio']);
         return true;
       } else {
         const user = await this.db.findUser(userName, password);
@@ -87,8 +87,8 @@ export class AuthService {
           showToast(`¡Bienvenid@ ${user.firstName} ${user.lastName}!`);
           await this.saveAuthUser(user);
           this.isFirstLogin.next(true);
-          this.selectedComponent.next('welcome');
-          await this.router.navigate(['/home']);
+          this.selectedComponent.next('Bienvenido');
+          await this.router.navigate(['/inicio']);
           return true;
         } else {
           showToast('El correo o la password son incorrectos');
