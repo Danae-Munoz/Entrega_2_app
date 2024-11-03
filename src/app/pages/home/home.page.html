@@ -3,7 +3,7 @@
 </app-header>
 
 <ion-content [fullscreen]="true">
-
+  <img class="background-image" src="/assets/images/IMG_20230310_082210.jpg">
   <app-qrwebscanner 
     *ngIf="selectedComponent === 'qrwebscanner'" 
     (scanned)="webQrScanned($event)"
@@ -21,6 +21,11 @@
   <app-forum 
     *ngIf="selectedComponent === 'forum'">
   </app-forum>
+
+  <app-map
+  *ngIf="selectedComponent === 'map'">
+    
+  </app-map>
 
 </ion-content>
 

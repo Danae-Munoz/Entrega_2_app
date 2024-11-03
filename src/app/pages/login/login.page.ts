@@ -70,6 +70,7 @@ export class LoginPage implements ViewWillEnter {
   }
 
   passwordRecovery() {
+    this.router.navigate(['/correo']);
     
   }
 

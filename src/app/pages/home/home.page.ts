@@ -13,6 +13,7 @@ import { Capacitor } from '@capacitor/core';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 import { ForumComponent } from 'src/app/components/forum/forum.component';
+import { MapPage } from "../map/map.page";
 
 @Component({
   selector: 'app-home',
@@ -20,11 +21,12 @@ import { ForumComponent } from 'src/app/components/forum/forum.component';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-      CommonModule, FormsModule, TranslateModule, IonContent
-    , HeaderComponent, FooterComponent
-    , WelcomeComponent, QrWebScannerComponent, DinosaurComponent
-    , ForumComponent
-  ]
+    CommonModule, FormsModule, TranslateModule, IonContent,
+    HeaderComponent, FooterComponent,
+    WelcomeComponent, QrWebScannerComponent, DinosaurComponent,
+    ForumComponent,
+    MapPage
+]
 })
 export class HomePage {
   
