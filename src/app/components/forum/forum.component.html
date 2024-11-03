@@ -24,6 +24,7 @@
           {{ post.id ? 'Actualizar' : 'Guardar' }}
         </ion-button>
       </div>
+      
     </ion-card-content>
   </ion-card>
 
@@ -38,25 +39,22 @@
         <h6>(Publicación #{{ post.id }}) {{ post.author }}</h6>
         <h4>{{ post.title }}</h4>
       </ion-card-header>
-
+  
       <ion-card-content>
         <p>{{ post.body }}</p>
       </ion-card-content>
-
-      <ion-item lines="none">
-        <ion-button fill="clear" color="primary" (click)="editPost(post)">
-          <ion-icon slot="start" name="pencil-outline"></ion-icon>Editar
-        </ion-button>
-        <ion-button fill="clear" color="danger" (click)="deletePost(post)">
-          <ion-icon slot="start" name="trash-outline"></ion-icon>Eliminar
-        </ion-button>
-      </ion-item>
+  
+      <!-- Contenedor para alinear los botones horizontalmente a la derecha -->
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-right: 16px;">
+        <ion-fab-button size="small" color="primary" (click)="editPost(post)">
+          <ion-icon name="pencil-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button size="small" color="danger" (click)="deletePost(post)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </div>
     </ion-card>
   </ion-list>
+  
 
-  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="cleanPost()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
 </ion-content>

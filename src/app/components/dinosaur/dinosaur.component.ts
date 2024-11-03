@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -11,14 +12,19 @@ import { AuthService } from 'src/app/services/auth.service';
   standalone: true,
   imports: [IonContent, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
-export class DinosaurComponent {
+export class DinosaurComponent implements OnDestroy {
 
   dino: any;
+  private subscription: Subscription;
 
   constructor(private authService: AuthService) { 
-    this.authService.qrCodeData.subscribe((qrData) => {
-      this.dino = qrData? JSON.parse(qrData): null;
+    this.subscription = this.authService.qrCodeData.subscribe((qr) => {
+      this.dino = qr? JSON.parse(qr): null;
     })
+  }
+  
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

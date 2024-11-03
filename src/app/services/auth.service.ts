@@ -16,8 +16,6 @@ export class AuthService {
   isFirstLogin = new BehaviorSubject<boolean>(false);
   storageQrCodeKey = 'QR_CODE';
   qrCodeData = new BehaviorSubject<string | null>(null);
-  selectedComponent = new BehaviorSubject<string>('welcome');
-  selectedPage: any;
 
   constructor(private router: Router, private db: DatabaseService, private storage: Storage) { }
 
@@ -78,7 +76,7 @@ export class AuthService {
       if (authUser) {
         this.authUser.next(authUser);
         this.isFirstLogin.next(false);
-        await this.router.navigate(['/inicio']);
+        await this.router.navigate(['/home']);
         return true;
       } else {
         const user = await this.db.findUser(userName, password);
@@ -87,8 +85,7 @@ export class AuthService {
           showToast(`¡Bienvenid@ ${user.firstName} ${user.lastName}!`);
           await this.saveAuthUser(user);
           this.isFirstLogin.next(true);
-          this.selectedComponent.next('Bienvenido');
-          await this.router.navigate(['/inicio']);
+          await this.router.navigate(['/home']);
           return true;
         } else {
           showToast('El correo o la password son incorrectos');

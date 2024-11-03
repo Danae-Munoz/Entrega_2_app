@@ -1,6 +1,5 @@
 <app-header 
-  (clickQrTestButton)="startQrTest()"
-  (clickQrScanButton)="startQrScan()">
+  (headerClick)="headerClick($event)">
 </app-header>
 
 <ion-content [fullscreen]="true">
@@ -23,10 +22,8 @@
     *ngIf="selectedComponent === 'forum'">
   </app-forum>
 
-
-
-
-
 </ion-content>
 
-<app-footer></app-footer>
+<app-footer
+  (footerClick)="footerClick($event)">
+</app-footer>

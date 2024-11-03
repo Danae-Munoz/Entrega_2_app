@@ -4,6 +4,8 @@ import { BehaviorSubject, lastValueFrom } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { Post } from '../model/post';
 import { showAlertError } from '../tools/message-functions';
+import { AuthService } from './auth.service';
+import { User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +20,19 @@ export class APIClientService {
   };
 
   //apiUrl = 'http://localhost:3000';
-  apiUrl = 'http://192.168.100.227:3000';
+  apiUrl = 'http://10.20.5.207:3005';
+  private intervalId: any;
   postList: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
 
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) { 
+    this.startRefreshingPosts();
+  }
+  private startRefreshingPosts(): void{
+    this.refreshPostList();
+    this.intervalId = setInterval(()=> {
+      this.refreshPostList();
+    },3000)
+  }
   // Crear una publicación y actualizar postList; devuelve el registro recién creado
   async createPost(post: Post): Promise<Post | null> {
     try {
@@ -79,6 +89,7 @@ export class APIClientService {
   async refreshPostList(): Promise<void> {
     try {
       const posts = await this.fetchPosts();
+      console.log(posts);
       this.postList.next(posts);
     } catch (error) {
       showAlertError('APIClientService.refreshPostList', error);

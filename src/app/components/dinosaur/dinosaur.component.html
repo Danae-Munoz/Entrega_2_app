@@ -1,5 +1,5 @@
 <ion-content>
-  <!-- <img class="background-image" src="../../../assets/images/trex-h.jpg" *ngIf="dino"> -->
+
   <div class="background-image" *ngIf="dino"></div>
 
   <ion-grid fixed *ngIf="dino" class="dino-content">
@@ -37,9 +37,10 @@
     </ion-row>
   </ion-grid>
 
-  <div class="center-frame">
-    <div *ngIf="!dino" class="picture-frame ion-text-center">
+  <div *ngIf="!dino" class="center-frame">
+    <div class="picture-frame ion-text-center">
       <img class="you-must-scan" src="/assets/images/you-must-scan.png">
     </div>
   </div>
+
 </ion-content>

@@ -7,16 +7,16 @@
 
     <div slot="end">
 
-      <ion-button size="large" (click)="showTest()">
+      <ion-button (click)="sendClickEvent('testqr')" size="small" >
         <ion-icon name="qr-code-outline" color="light"></ion-icon>
         &nbsp;Test
       </ion-button>
 
-      <ion-button fill="clear" size="large" (click)="startScan()">
+      <ion-button (click)="sendClickEvent('scan')" size="small" fill="clear">
         <ion-icon name="qr-code-outline" color="light"></ion-icon>
       </ion-button>
 
-      <ion-button fill="clear" size="large" (click)="logout()">
+      <ion-button (click)="logout()" size="small" fill="clear">
         <ion-icon name="log-out-outline" color="light"></ion-icon>
       </ion-button>
 

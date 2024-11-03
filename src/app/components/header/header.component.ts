@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
-import { arrowBackOutline, logOut, logOutOutline, qrCodeOutline } from 'ionicons/icons';
+import { logOutOutline, qrCodeOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -22,19 +22,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HeaderComponent {
   
-  @Output() clickQrScanButton: EventEmitter<void> = new EventEmitter<void>();
-  @Output() clickQrTestButton: EventEmitter<void> = new EventEmitter<void>();
+  @Output() headerClick = new EventEmitter<string>();
 
   constructor(private navCtrl: NavController, private authService: AuthService) { 
     addIcons({ logOutOutline, qrCodeOutline });
   }
 
-  startScan() {
-    this.clickQrScanButton.emit();
-  }
-
-  showTest() {
-    this.clickQrTestButton.emit();
+  sendClickEvent(buttonName: string) {
+    this.headerClick.emit(buttonName);
   }
 
   logout() {

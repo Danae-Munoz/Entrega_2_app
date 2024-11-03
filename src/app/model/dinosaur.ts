@@ -69,28 +69,28 @@ export class Dinosaur {
   // mejor es válido, pero es de otra cosa que no es un dinosaurio
   // de esta aplicación.
 
-  static isValidDinosaurQrCode(datosQR: string, showError: boolean = false) {
-    if (datosQR !== '') {
-      try {
-        const json = JSON.parse(datosQR);
+  static isValidDinosaurQrCode(qr: string) {
+    
+    if (qr === '') return false;
 
-        if (json.name !== undefined
-          && json.length !== undefined
-          && json.height !== undefined
-          && json.weight !== undefined
-          && json.diet !== undefined
-          && json.period !== undefined
-          && json.extinction !== undefined
-          && json.found !== undefined
-          && json.image !== undefined
-          ) {
-          return true;
-        }
-      } catch(error: any) {}
-    }
-    if (showError) {
-      showAlert('El código QR escaneado no corresponde a un dinosaurio');
-    }
+    try {
+      const json = JSON.parse(qr);
+
+      if ( json.name       !== undefined
+        && json.length     !== undefined
+        && json.height     !== undefined
+        && json.weight     !== undefined
+        && json.diet       !== undefined
+        && json.period     !== undefined
+        && json.extinction !== undefined
+        && json.found      !== undefined
+        && json.image      !== undefined)
+      {
+        return true;
+      }
+    } catch(error) { }
+
+    showAlert('El código QR escaneado no corresponde a un dinosaurio');
     return false;
   }
   

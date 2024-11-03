@@ -58,6 +58,7 @@ export class ScannerService {
       const { barcodes }: ScanResult = await BarcodeScanner.scan(
         { formats: [BarcodeFormat.QrCode],}
       );
+      
       return Promise.resolve(barcodes[0].displayValue);
       
     } catch(error: any) {
