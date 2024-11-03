@@ -13,7 +13,7 @@ import { Capacitor } from '@capacitor/core';
 import { ScannerService } from 'src/app/services/scanner.service';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 import { ForumComponent } from 'src/app/components/forum/forum.component';
-import { MapPage } from "../map/map.page";
+import { MapPage } from "src/app/pages/map/map.page";
 
 @Component({
   selector: 'app-home',
