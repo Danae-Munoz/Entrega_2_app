@@ -1,0 +1,20 @@
+.custom-header {
+  background-color: rgb(255, 255, 255) !important;
+  color: orange !important;
+}
+
+.custom-header ion-title h3 {
+  color: rgb(255, 166, 0) !important;
+}
+
+.custom-header ion-icon {
+  color: rgb(255, 255, 255)!important;
+}
+
+.custom-header ion-button {
+  color: rgb(255, 255, 255) !important;
+}
+ion-button {
+  --background: orange ; /* Color de fondo naranja */
+  --color: orange ; /* Color del texto blanco */
+}
