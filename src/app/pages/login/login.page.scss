@@ -1,5 +1,5 @@
 .login-container {
-    border: 2px solid gray;
+    border: 4px solid rgb(255, 157, 1);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,6 +9,8 @@
     -ms-transform: translateX(-50%) translateY(-70%);
     transform: translateX(-50%) translateY(-70%);
 }
+
+
 
 @media screen and (orientation: portrait) {
     .login-container {
@@ -32,6 +34,36 @@
     }
 }
 
-.transparent-input {
-    opacity: 90% !important;
+
+.orange-buton{
+  --background: #FFA500; /* Color de fondo naranja */
+  --color: #ffffff; /* Color del texto blanco */
+  --border-radius: 25px; /* Redondeo de los bordes */
+  border: none; /* Eliminar el borde por defecto */
+  padding: 10px 10px; /* Ajustar el tamaño del botón */
+  text-align: center; /* Centrar el texto */
+  display: inline-block; /* Asegurar que el botón se comporte correctamente */
 }
+
+.appName{
+    --background: #FFA500; /* Color de fondo naranja */
+    --color: #ffffff; /* Color del texto blanco */
+}
+.idioma {
+    color: #ff9d00;
+
+}
+.label{
+    color: #ff9d00;
+}
+
+ion-button {
+  --background: #FFA500; /* Color de fondo naranja */
+  --color: #ffffff; /* Color del texto blanco */
+  --border-radius: 25px; /* Bordes redondeados */
+  padding: 10px 20px; /* Ajustar el tamaño del botón */
+  text-align: center; /* Centrar el texto */
+  border: none; /* Eliminar el borde */
+}
+
+

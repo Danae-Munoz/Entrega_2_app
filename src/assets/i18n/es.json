@@ -11,6 +11,7 @@
 
     "Login.Title.Login": "Iniciar sesión",
     "Login.Label.Email": "Correo",
+    "Login.Label.Cuenta": "Cuenta",
     "Login.Placeholder.Email": "Ingresa aquí tu correo",
     "Login.Label.Password": "Contraseña",
     "Login.Placeholder.Password": "Ingresa aquí tu contraseña",
@@ -18,6 +19,7 @@
     "Login.Button.Signin": "Registrarse",
     "Login.Button.ForgotPassword": "Olvidé mi contraseña",
     "Login.Button.DarkMode": "Oscuro",
+    "Login.Placeholder.Cuenta": "Ingresa aquí tu cuenta",
 
     "WelcomePage.Title.Wellcome": "¡Bienvenido a Asistencia Duoc!",
 
