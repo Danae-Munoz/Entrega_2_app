@@ -1,3 +1,9 @@
 #mapId {
   height: 100vh; /* Hace que el mapa ocupe todo el alto de la pantalla */
 }
+.custom-footer {
+  position: fixed;
+  bottom: 70px; /* Ajusta este valor según la altura del footer predeterminado */
+  width: 100%;
+  z-index: 10; /* Asegura que esté por encima del contenido */
+}

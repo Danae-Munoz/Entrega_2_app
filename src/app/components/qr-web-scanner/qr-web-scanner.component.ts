@@ -1,9 +1,12 @@
+import { AuthService } from 'src/app/services/auth.service';
+import { mostrarEjemplosDeMensajes } from './../../tools/message-functions';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Output, ViewChild, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { EventEmitter } from '@angular/core';
 import jsQR, { QRCode } from 'jsqr';
+import { User } from 'src/app/model/user';
 
 @Component({
   selector: 'app-qrwebscanner',
@@ -21,10 +24,12 @@ export class QrWebScannerComponent implements OnDestroy {
 
   qrData: string = '';
   mediaStream: MediaStream | null = null; // Almacena el flujo de medios
+  user: User = new User();
 
-  constructor() 
+  constructor(private authService: AuthService) 
   { 
     this.startQrScanningForWeb();
+    
   }
 
   async startQrScanningForWeb() {
@@ -73,6 +78,13 @@ export class QrWebScannerComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.stopCamera();
+  }
+
+  public mostrarDatosQROrdenados(datosQR: string): void{
+    this.mostrarDatosQROrdenados;
+    this.user.asistencia = JSON.parse(datosQR);
+    this.authService.saveAuthUser(this.user)
+
   }
 
 

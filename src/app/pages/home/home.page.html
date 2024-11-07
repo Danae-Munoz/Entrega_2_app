@@ -10,13 +10,17 @@
     (stopped)="webQrStopped()">
   </app-qrwebscanner >
   
-  <app-welcome 
-    *ngIf="selectedComponent === 'welcome'">
-  </app-welcome>
+  <app-qrwebscanner 
+    *ngIf="selectedComponent === 'qr-web-scanner'">
+  </app-qrwebscanner>
 
-  <app-dinosaur 
-    *ngIf="selectedComponent === 'dinosaur'">
-  </app-dinosaur>
+  <app-miclase 
+    *ngIf="selectedComponent === 'miclase'">
+  </app-miclase>
+
+  <app-mis-datos
+    *ngIf="selectedComponent === 'mis-datos'">
+  </app-mis-datos>
 
   <app-forum 
     *ngIf="selectedComponent === 'forum'">

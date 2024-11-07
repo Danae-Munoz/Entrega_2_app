@@ -2,6 +2,7 @@ export class EducationalLevel {
 
   id = 1;
   name = 'Básica Incompleta';
+firstName: any;
 
   constructor() { }
 

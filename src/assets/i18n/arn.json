@@ -1,7 +1,7 @@
 {
-    "AppName": "Angry-Dinosaurs",
+    "AppName": "Asistencia Duoc",
     "AuthorText": "Rakinon tamiñ:",
-    "Author": "Cristián Gómez Vega",
+    "Author": "",
     "Language": "Dugün",
     "Language.English": "English",
     "Language.Spanish": "Español",
@@ -19,13 +19,15 @@
     "Login.Button.ForgotPassword": "Ñi rakinmapu elañmafi",
     "Login.Button.DarkMode": "Pewma külen müleyin",
 
-    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi Angry-Dinosaurs!",
+    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi Asistencia Duoc!",
 
     "HomePage.Button.Wellcome": "Wüña",
     "HomePage.Button.Scan": "Wütran",
     "HomePage.Button.Dinosaur": "Tüfachi Chod",
     "HomePage.Button.Forum": "Trapu",
     "HomePage.Button.Map": "Map",
+    "HomePage.Button.Miclase": "Miclase",
+    "HomePage.Button.Misdatos": "Misdatos",
 
     "ThemePage.Label.ColorTheme": "Dugün de kolor:",
     "ThemePage.Color.Light": "Külfün",

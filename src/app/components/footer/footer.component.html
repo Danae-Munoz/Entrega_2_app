@@ -1,18 +1,23 @@
 <ion-footer>
   <ion-toolbar color="primary" style="padding-bottom: 4px">
     <ion-segment 
-      value="welcome" 
+      value="qr-web-scanner" 
       (ionChange)="sendClickEvent($event)"
       [(ngModel)]="selectedButton"
     >
-      <ion-segment-button value="welcome">
+      <ion-segment-button value="qr-web-scanner">
         <ion-icon name="home-outline"></ion-icon>
         {{ "HomePage.Button.Wellcome" | translate }}
       </ion-segment-button>
       
-      <ion-segment-button #dinoButton value="dinosaur">
-        <ion-icon name="paw-outline"></ion-icon>
-        {{ "HomePage.Button.Dinosaur" | translate }}
+      <ion-segment-button value="miclase">
+        <ion-icon name="school-outline"></ion-icon>
+        {{ "HomePage.Button.Miclase" | translate }}
+      </ion-segment-button>
+
+      <ion-segment-button value="mis-datos">
+        <ion-icon name="grid-outline"></ion-icon>
+        {{ "HomePage.Button.Misdatos" | translate }}
       </ion-segment-button>
       
       <ion-segment-button value="forum">

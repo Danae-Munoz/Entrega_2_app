@@ -14,6 +14,8 @@ import { ScannerService } from 'src/app/services/scanner.service';
 import { WelcomeComponent } from 'src/app/components/welcome/welcome.component';
 import { ForumComponent } from 'src/app/components/forum/forum.component';
 import { MapPage } from "src/app/pages/map/map.page";
+import { MiclaseComponent } from "../../components/miclase/miclase.component";
+import { MisDatosPage } from "../mis-datos/mis-datos.page";
 
 @Component({
   selector: 'app-home',
@@ -25,7 +27,9 @@ import { MapPage } from "src/app/pages/map/map.page";
     HeaderComponent, FooterComponent,
     WelcomeComponent, QrWebScannerComponent, DinosaurComponent,
     ForumComponent,
-    MapPage
+    MapPage,
+    MiclaseComponent,
+    MisDatosPage
 ]
 })
 export class HomePage {

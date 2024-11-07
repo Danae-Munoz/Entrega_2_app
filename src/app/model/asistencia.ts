@@ -10,6 +10,42 @@ export class Asistencia {
   public seccion: string;
   public sede: string;
 
+  static jsonUserExample =
+    `{
+      "name": "Tyrannosaurus Rex",
+      "length": "12 mts",
+      "height": "4 mts",
+      "weight": "6 tons",
+      "diet": "Carnivorous",
+      "period": "Late Cretaceous",
+      "extinction": "65 million years",
+      "found": "Canada and USA",
+      "image": "/assets/images/rex.jpg"
+    }`;
+  
+    static jsonDinoEmpty =
+    `{
+      "name": "",
+      "length": "",
+      "height": "",
+      "weight": "",
+      "diet": "",
+      "period": "",
+      "extinction": "",
+      "found": "",
+      "image": ""
+    }`;
+
+   name = '';
+   length = '';
+   height = '';
+   weight = '';
+   diet = '';
+   period = '';
+   extinction = '';
+   found = '';
+   image = '';
+
   constructor() {
     this.bloqueInicio = 0;
     this.bloqueTermino = 0;

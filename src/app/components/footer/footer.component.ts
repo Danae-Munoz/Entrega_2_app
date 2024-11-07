@@ -4,7 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon, IonButton } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { homeOutline, pawOutline, pencilOutline, qrCodeOutline, flowerOutline } from 'ionicons/icons';
+import { homeOutline, pawOutline, pencilOutline, qrCodeOutline, flowerOutline, schoolOutline, gridOutline } from 'ionicons/icons';
+import { MiclaseComponent } from '../miclase/miclase.component';
+import { QrWebScannerComponent } from '../qr-web-scanner/qr-web-scanner.component';
+import { ForumComponent } from '../forum/forum.component';
 
 @Component({
   selector: 'app-footer',
@@ -15,7 +18,8 @@ import { homeOutline, pawOutline, pencilOutline, qrCodeOutline, flowerOutline } 
       CommonModule    // CGV-Permite usar directivas comunes de Angular
     , FormsModule     // CGV-Permite usar formularios
     , TranslateModule // CGV-Permite usar pipe 'translate'
-    , IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon
+    , IonFooter, IonToolbar, IonSegment, IonSegmentButton, IonIcon,
+    ForumComponent, MiclaseComponent, QrWebScannerComponent
   ]
 })
 export class FooterComponent {
@@ -24,7 +28,7 @@ export class FooterComponent {
   @Output() footerClick = new EventEmitter<string>();
 
   constructor() { 
-    addIcons({homeOutline,pawOutline,pencilOutline,flowerOutline,qrCodeOutline});
+    addIcons({homeOutline,schoolOutline,gridOutline,pencilOutline,flowerOutline,pawOutline,qrCodeOutline});
   }
 
   sendClickEvent($event: any) {

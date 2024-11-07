@@ -11,6 +11,9 @@ import { convertDateToString, convertStringToDate } from '../tools/date-function
   providedIn: 'root'
 })
 export class DatabaseService {
+  static findUserByEmail() {
+    throw new Error('Method not implemented.');
+  }
 
   testUser1 = User.getNewUsuario(
     'atorres', 
