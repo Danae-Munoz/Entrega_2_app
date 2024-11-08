@@ -95,4 +95,6 @@ export class QrWebScannerComponent implements OnDestroy {
     }
   }
 
+  
+
 }
