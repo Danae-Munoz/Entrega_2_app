@@ -19,8 +19,8 @@ export class APIClientService {
     })
   };
 
-  //apiUrl = 'http://localhost:3000';
-  apiUrl = 'http://10.20.5.207:3005';
+  apiUrl = 'http://localhost:3000';
+  //apiUrl = 'http://10.20.5.207:3005';
   private intervalId: any;
   postList: BehaviorSubject<Post[]> = new BehaviorSubject<Post[]>([]);
 

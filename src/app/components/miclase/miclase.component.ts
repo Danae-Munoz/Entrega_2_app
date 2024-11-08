@@ -3,6 +3,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonContent, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
   imports: [IonContent, IonGrid, IonRow, IonCol, CommonModule, FormsModule]
 })
 export class MiclaseComponent  implements OnDestroy {
-
+  
   user: any;
   private subscription: Subscription;
 

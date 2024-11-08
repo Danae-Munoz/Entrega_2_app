@@ -10,6 +10,7 @@ import { DatabaseService } from './database.service';
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
 
   storageAuthUserKey = 'AUTHENTICATED_USER';
   authUser = new BehaviorSubject<User | null>(null);

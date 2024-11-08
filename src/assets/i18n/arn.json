@@ -22,7 +22,7 @@
     "Login.Placeholder.Cuenta": "Eymi mülen teu cuenta",
     
 
-    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi Asistencia Duoc!",
+    "WelcomePage.Title.Wellcome": "¡Tüfachi mülenmi!",
 
     "HomePage.Button.Wellcome": "Wüña",
     "HomePage.Button.Scan": "Wütran",
@@ -31,6 +31,7 @@
     "HomePage.Button.Map": "Map",
     "HomePage.Button.Miclase": "Miclase",
     "HomePage.Button.Misdatos": "Misdatos",
+    "HomePage.Button.Detener": "Stop QR scanning",
 
     "ThemePage.Label.ColorTheme": "Dugün de kolor:",
     "ThemePage.Color.Light": "Külfün",
