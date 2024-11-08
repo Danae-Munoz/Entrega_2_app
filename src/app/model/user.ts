@@ -67,9 +67,9 @@ nombreAsignatura: any;
     return usuario;
   }
 
-  // async findUser(userName: string, password: string): Promise<User | undefined> {
-  //   return await this.db.findUser(userName, password);
-  // }
+  async findUser(userName: string, password: string): Promise<User | undefined> {
+     return await this.db.findUser(userName, password);
+   }
 
   async findByUserName(userName: string): Promise<User | undefined>  {
      return await this.db.findUserByUserName(userName);
@@ -79,13 +79,13 @@ nombreAsignatura: any;
      return await this.db.findUserByEmail(email);
    }
 
-  // async save(): Promise<void> {
-  //   this.db.saveUser(this);
-  // }
+   async save(): Promise<void> {
+     this.db.saveUser(this);
+   }
 
-  // async delete(userName: string): Promise<void>  {
-  //   this.db.deleteByUserName(userName);
-  // }
+  async delete(userName: string): Promise<void>  {
+     this.db.deleteByUserName(userName);
+   }
 
   override toString(): string {
     return `\n
