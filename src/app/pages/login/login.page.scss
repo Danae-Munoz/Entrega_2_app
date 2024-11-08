@@ -9,11 +9,7 @@
     -ms-transform: translateX(-50%) translateY(-70%);
     transform: translateX(-50%) translateY(-70%);
 }
-.transparencia {
-    background-color: rgba(255, 255, 255, 0); /* Fondo transparente */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    border: none; /* Sin borde */
-}
+
 
 
 @media screen and (orientation: portrait) {
@@ -39,36 +35,9 @@
 }
 
 
-.orange-buton{
-  --background: #FFA500; /* Color de fondo naranja */
-  --color: #ffffff; /* Color del texto blanco */
-  --border-radius: 25px; /* Redondeo de los bordes */
-  border: none; /* Eliminar el borde por defecto */
-  padding: 10px 10px; /* Ajustar el tamaño del botón */
-  text-align: center; /* Centrar el texto */
-  display: inline-block; /* Asegurar que el botón se comporte correctamente */
-}
 
-.appName{
-    --background: #FFA500; /* Color de fondo naranja */
-    --color: #ffffff; /* Color del texto blanco */
-}
-.idioma {
-    color: #ff9d00;
 
-}
-.label{
-    color: #ff9d00;
-}
 
-ion-button {
-  --background: #FFA500; /* Color de fondo naranja */
-  --color: #ffffff; /* Color del texto blanco */
-  --border-radius: 25px; /* Bordes redondeados */
-  padding: 10px 20px; /* Ajustar el tamaño del botón */
-  text-align: center; /* Centrar el texto */
-  border: none; /* Eliminar el borde */
-}
 
 
 
