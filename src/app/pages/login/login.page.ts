@@ -68,6 +68,9 @@ export class LoginPage implements ViewWillEnter {
   registerNewUser() {
 
   }
+  irAlMapa() {
+    this.router.navigate(['/map']);
+  }
 
   passwordRecovery() {
     this.router.navigate(['/correo']);

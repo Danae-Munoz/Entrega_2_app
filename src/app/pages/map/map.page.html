@@ -1,20 +1,27 @@
-<ion-content [fullscreen]="true" class="ion-no-padding">
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+
   <!-- El div con id "mapId" será donde se mostrará el mapa -->
   <div id="mapId" style="height: 100%;"></div>
+
 </ion-content>
 
-<!-- Este es tu footer personalizado -->
-<ion-footer class="custom-footer">
-  <ion-toolbar color="primary" class="ion-text-center" >
-    <ion-button  shape="round"  size="small" (click)="goToDUOC()">
+
+<ion-footer>
+  <ion-toolbar class="ion-text-center" color="primary">
+    <ion-button color="secondary" shape="round" color="secondary" size="small"
+        (click)="goToDUOC()" >
       DUOC
     </ion-button>
 
-    <ion-button shape="round" size="small" (click)="goToMyPosition()">
+    <ion-button color="secondary" shape="round" color="secondary" size="small"
+        (click)="goToMyPosition()">
       Aquí
     </ion-button>
 
-    <ion-button shape="round"  size="small" (click)="showRouteToDuoc()">
+    <ion-button color="primary" shape="round" color="secondary" size="small"
+        (click)="showRouteToDuoc()">
       Ruta
     </ion-button>
 
@@ -24,6 +31,3 @@
     </div>
   </ion-toolbar>
 </ion-footer>
-
-
-

@@ -5,10 +5,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicModule } from '@ionic/angular';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { FooterComponent } from 'src/app/components/footer/footer.component';
-import { GeoService } from 'src/app/services/geo.service';
+import { GeolocationService } from 'src/app/services/geolocation.service';
 import * as L from 'leaflet'; // Importamos Leaflet
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-map',
@@ -30,10 +29,7 @@ export class MapPage implements OnInit {
   addressName: string = '';
   distance: string = '';
 
-  constructor(
-    private geo: GeoService, 
-    private http: HttpClient,
-  private router: Router) { 
+  constructor(private geo: GeolocationService, private http: HttpClient) { 
 
   }
 
@@ -147,10 +143,6 @@ export class MapPage implements OnInit {
     });
     
     L.Marker.prototype.options.icon = iconDefault;
-  }
-
-  navegarMisDatos() {
-    //this.router.navigate(['/mis-datos']);
   }
 
 }

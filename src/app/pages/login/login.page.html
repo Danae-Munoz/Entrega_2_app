@@ -69,15 +69,15 @@
 
 </ion-content>
 
-<ion-button  class="orange-buton" shape="block" (click)="passwordRecovery()">
-  {{ 'Login.Button.ForgotPassword' | translate }}
-</ion-button>
-
-<ion-button class="orange-buton" shape="block" (click)="registerNewUser()">
-  {{ 'Login.Button.Signin' | translate }}
-</ion-button>
-
 <ion-footer>
-  
+  <ion-button color="primary" shape="block" (click)="irAlMapa()">
+    {{ 'HomePage.Button.Map' | translate }}
+  </ion-button>
+  <ion-button color="primary" shape="block" (click)="registerNewUser()">
+    {{ 'Login.Button.Signin' | translate }}
+  </ion-button>
+  <ion-button color="secondary" shape="block" (click)="passwordRecovery()">
+    {{ 'Login.Button.ForgotPassword' | translate }}
+  </ion-button>
 </ion-footer>
 
