@@ -5,6 +5,7 @@ import { showAlertError, showToast } from 'src/app/tools/message-functions';
 import { User } from '../model/user';
 import { Storage } from '@ionic/storage-angular';
 import { DatabaseService } from './database.service';
+import { Usuario } from '../model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,19 @@ export class AuthService {
   isFirstLogin = new BehaviorSubject<boolean>(false);
   storageQrCodeKey = 'QR_CODE';
   qrCodeData = new BehaviorSubject<string | null>(null);
+  keyUsuario = 'USUARIO_AUTENTICADO';
+  usuarioAutenticado = new BehaviorSubject<Usuario | null>(null);
+  // La variable primerInicioSesion vale true cuando el usuario digita correctamente sus
+  // credenciales y logra entrar al sistema por primera vez. Pero vale falso, si el 
+  // usuario ya ha iniciado sesión, luego cierra la aplicación sin cerrar la sesión
+  // y vuelve a entrar nuevamente. Si el usuario ingresa por primera vez, se limpian todas
+  // las componentes, pero se dejan tal como están y no se limpian, si el suario
+  // cierra al aplicación y la vuelve a abrir sin haber previamente cerrado la sesión.
+  primerInicioSesion =  new BehaviorSubject<boolean>(false);
+  selectedButton = new BehaviorSubject<string>('codigoqr');
+
+  private contraseñaSubject = new BehaviorSubject<string>('');
+  contraseña$ = this.contraseñaSubject.asObservable() //pregunta
 
   constructor(private router: Router, private db: DatabaseService, private storage: Storage) { }
 
@@ -116,6 +130,36 @@ export class AuthService {
       return false;
     }
   }
+  transmitirContraseña(contraseña: string) {
+    this.contraseñaSubject.next(contraseña);
+  }
+  async inicializarAutenticacion() {
+    await this.storage.create();
+  }
+
+
+  async leerUsuarioAutenticado(): Promise<Usuario | null> {
+    const usuario = await this.storage.get(this.keyUsuario) as Usuario;
+    this.usuarioAutenticado.next(usuario);
+    return usuario;
+  }
+  
+
+  guardarUsuarioAutenticado(usuario: Usuario) {
+    this.storage.set(this.keyUsuario, usuario);
+    this.usuarioAutenticado.next(usuario);
+  }
+
+  eliminarUsuarioAutenticado(usuario: Usuario) {
+    this.storage.remove(this.keyUsuario);
+    this.usuarioAutenticado.next(null);
+  }
+
+  setUsuarioAutenticado(usuario: Usuario) {
+    this.storage.set(this.keyUsuario, usuario);
+    this.usuarioAutenticado.next(usuario);
+  }
+
 
   // async readQrFromStorage(): Promise<string | null> {
   //   try {
