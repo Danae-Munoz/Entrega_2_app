@@ -71,8 +71,14 @@ export class MisDatosPage implements OnInit {
        = EducationalLevel.findLevel(event.detail.value)!;
   }
 
-  onFechaNacimientoChange(event: any) {
-    this.usuario.dateOfBirth = new Date(event.detail.value); // Convertir de ISO a Date
+  onFechaNacimientoChange(event: any) {  
+    const dateValue = event.detail.value; // Esto debería ser una cadena en formato YYYY-MM-DD  
+    if (dateValue) {  
+      this.usuario.dateOfBirth = new Date(dateValue); // Convertir de formato ISO a Date  
+    } else {  
+      console.warn('Fecha de nacimiento no válida:', dateValue);  
+      this.usuario.dateOfBirth; // O asignar un valor predeterminado  
+    }  
   }
 
 }
