@@ -1,34 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-col size-md="6">
-      <ion-img src="/assets/icon/logo-duoc.png" class="logo ion-margin-left"></ion-img>
-    </ion-col>
-    <ion-col size-md="12">
-      <div class="ion-text-center">Sistema de Asistencia DUOCUC</div>
-    </ion-col>
-    <ion-col size-md="6"></ion-col>
-  </ion-toolbar>
+<ion-header [translucent]="true">  
+  <ion-toolbar class="header-background">  
+    <ion-col size-md="6">  
+      <ion-img src="../../../assets/images/Logo_DuocUC.svg.png" class="logo ion-margin-left"></ion-img>  
+    </ion-col>  
+    <ion-col size-md="12">  
+      <div class="ion-text-center">Sistema de Asistencia DUOCUC</div>  
+    </ion-col>  
+    <ion-col size-md="6"></ion-col>  
+  </ion-toolbar>  
 </ion-header>
 
-<ion-content>
-  <img src="/assets/icon/c-28b93bf742.webp" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">
-  <div class="centrado-vertical">
-    <ion-card-content class="login ion-fade-in-up ion-animatable">
-      
-      <div class="titulo">
-        <h1>Correo</h1>
-      </div>
-      <ion-item class="ion-margin-top">
-        <ion-input label="Correo:" labelplacement="floating" [(ngModel)]="correo"></ion-input>
-      </ion-item>
+<ion-content>  
+  <img src="../../../assets/images/IMG_20230406_080720.jpg" class="img-fluid" style="position: absolute; right: 0; top: 0; z-index: -100; WIDTH:100%; height: 100%;">  
+  <div class="centrado-vertical">  
+    <ion-card-content class="login ion-fade-in-up ion-animatable">  
+      <div class="titulo">  
+        <h1>Correo</h1>  
+      </div>  
+      <ion-item class="ion-margin-top">  
+        <ion-input   
+          label="Correo:"   
+          labelplacement="floating"   
+          [(ngModel)]="correo"   
+          required   
+          type="email"  
+          placeholder="Ingrese su correo">  
+        </ion-input>  
+      </ion-item>  
     
-      <ion-row>
-        <ion-col size="12">
-          <br>
-          <ion-button shape="block" (click)="recuperarContrasena()">Recuperar Contraseña</ion-button>
-          <ion-button expand="block" class="ion-margin-top"  (click)="volverAlInicio()"> Volver al Inicio </ion-button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </div>
+      <ion-row>  
+        <ion-col size="12">  
+          <br>  
+          <ion-button shape="block" (click)="recuperarContrasena()">Recuperar Contraseña</ion-button>  
+          <ion-button expand="block" class="ion-margin-top" (click)="volverAlInicio()"> Volver al Inicio </ion-button>  
+        </ion-col>  
+      </ion-row>  
+    </ion-card-content>  
+  </div>  
 </ion-content>
